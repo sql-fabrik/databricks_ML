@@ -1,15 +1,11 @@
 # Databricks notebook source
 ## Exkurs: Daten plotten
-%matplotlib inline  ##-- zeigt das Chart "im REsultbereich des Notebooks"
+%matplotlib inline  ##-- zeigt das Chart "im Resultbereich des Notebooks"
 
 import matplotlib.pyplot as plt
 
 plt.plot([1, 2, 3], [6, 7, 8])
 plt.show()
-
-
-# COMMAND ----------
-
 
 
 # COMMAND ----------
