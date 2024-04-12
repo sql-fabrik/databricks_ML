@@ -20,6 +20,6 @@ sample-files:
 +  teilnehmer.txt
 +  teilnehmer2.tsv
 
-sample-filelocation:
-https://itschulungen.blob.core.windows.net/databricks-ml/
+sample-filelocation:                                      <br>
+https://itschulungen.blob.core.windows.net/databricks-ml/ <br>
 
