@@ -99,3 +99,37 @@ model.predict(
            , [3]
            ])
 )  
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ---
+
+# COMMAND ----------
+
+LRyValue = model.predict( xs )  ## all Diamonds (input "carat")
+
+print(LRyValue.reshape(-1,1))  ## (Linear Regression "y" Value) = "predicted y"
+print(LRyValue.shape)
+
+# COMMAND ----------
+
+## combine "data" and "predictions"  -->  allData
+allData = np.column_stack( (df_sData, LRyValue) )
+print(allData)
+
+
+# COMMAND ----------
+
+##LRyValue.write.mode("overwrite").saveAsTable("Diamond_predictions")
+df_allData = spark.createDataFrame(allData)
+df_allData.write.mode("overwrite").saveAsTable("Diamonds_allData")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT *, CAST(_12 as int) as pred_Price
+# MAGIC FROM   Diamonds_allData
+# MAGIC WHERE  _1 in (1,2,3,4, 5, 53936, 53937, 53938)
+# MAGIC ORDER  by _1 asc
+# MAGIC LIMIT  100
