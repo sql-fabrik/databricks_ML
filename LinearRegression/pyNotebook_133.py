@@ -128,15 +128,20 @@ print(allData)
 
 # DBTITLE 1,format as DataFrame
 ##LRyValue.write.mode("overwrite").saveAsTable("Diamond_predictions")
-df_allData = spark.createDataFrame(allData)
-df_allData.write.mode("overwrite").saveAsTable("Diamonds_allData")
+
+col_names = ["Id", "carat", "cut", "color", "clarity", "depth", "table", "price", "x_size", "y_size", "z_size", "LRmodel_Price"]
+df_allData = pd.DataFrame(allData, columns=col_names)
+print(df_allData)
+
+spark_df = spark.createDataFrame(df_allData)
+spark_df.write.mode("overwrite").saveAsTable("Diamonds_allData")
 
 # COMMAND ----------
 
 # DBTITLE 1,query with SQL
 # MAGIC %sql
-# MAGIC SELECT *, CAST(_12 as int) as pred_Price
+# MAGIC SELECT *
 # MAGIC FROM   Diamonds_allData
-# MAGIC WHERE  _1 in (1,2,3,4, 5, 53936, 53937, 53938)
-# MAGIC ORDER  by _1 asc
+# MAGIC WHERE  Id in (1, 2, 3, 4, 5, 53936, 53937, 53938)
+# MAGIC ORDER  by Id asc
 # MAGIC LIMIT  100
