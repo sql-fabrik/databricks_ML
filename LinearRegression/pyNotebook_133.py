@@ -47,11 +47,13 @@ print(xs.shape)
 
 # COMMAND ----------
 
+# DBTITLE 1,"format" Label-Column
 ys = df_sData["price"].to_numpy().reshape(-1, 1)
 print(ys.shape)
 
 # COMMAND ----------
 
+# DBTITLE 1,model - train
 from sklearn.linear_model import LinearRegression
 
 model = LinearRegression()
@@ -65,6 +67,7 @@ model.fit(xs, ys)
 
 # COMMAND ----------
 
+# DBTITLE 1,model - get return-Values
 ## 'predictedPrice' = a * 'inputCarat' + b
 print(model.coef_)       ##--> a
 print(model.intercept_)  ##--> b
@@ -107,6 +110,7 @@ model.predict(
 
 # COMMAND ----------
 
+# DBTITLE 1,model.predict : array as input
 LRyValue = model.predict( xs )  ## all Diamonds (input "carat")
 
 print(LRyValue.reshape(-1,1))  ## (Linear Regression "y" Value) = "predicted y"
@@ -114,6 +118,7 @@ print(LRyValue.shape)
 
 # COMMAND ----------
 
+# DBTITLE 1,combine "data" and "predictions"
 ## combine "data" and "predictions"  -->  allData
 allData = np.column_stack( (df_sData, LRyValue) )
 print(allData)
@@ -121,12 +126,14 @@ print(allData)
 
 # COMMAND ----------
 
+# DBTITLE 1,format as DataFrame
 ##LRyValue.write.mode("overwrite").saveAsTable("Diamond_predictions")
 df_allData = spark.createDataFrame(allData)
 df_allData.write.mode("overwrite").saveAsTable("Diamonds_allData")
 
 # COMMAND ----------
 
+# DBTITLE 1,query with SQL
 # MAGIC %sql
 # MAGIC SELECT *, CAST(_12 as int) as pred_Price
 # MAGIC FROM   Diamonds_allData
