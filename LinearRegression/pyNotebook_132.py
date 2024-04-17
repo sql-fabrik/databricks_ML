@@ -68,11 +68,13 @@ print(xs.shape)
 
 # COMMAND ----------
 
+# DBTITLE 1,"format" Label-Column
 ys = df_sData["price"].to_numpy().reshape(-1, 1)
 print(ys.shape)
 
 # COMMAND ----------
 
+# DBTITLE 1,model - train
 from sklearn.linear_model import LinearRegression
 
 model = LinearRegression()
@@ -86,6 +88,7 @@ model.fit(xs, ys)
 
 # COMMAND ----------
 
+# DBTITLE 1,model - get return-Values
 ## 'predictedPrice' = a * 'inputCarat' + b
 print(model.coef_)       ##--> a
 print(model.intercept_)  ##--> b
