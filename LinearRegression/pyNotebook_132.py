@@ -50,7 +50,7 @@ display(df_sData)  ## show as "Table"
 
 # DBTITLE 1,Scatterplot
 # Show scatterplot
-##sns.scatterplot(x="carat", y="price", data=df.sample(500))
+##sns.scatterplot(x="carat", y="price", data=df_sData.sample(500))
 ##sns.scatterplot(x="carat", y="price", data=df)  ##-- !! optik
 sns.scatterplot(x = "carat", y = "price", data=df_sData.sample( len(df_sData) ))  ## len(df) --> "full-Sample" 
 

@@ -126,10 +126,15 @@ print(allData)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC -- DROP TABLE IF EXISTS default.diamonds_alldata
+
+# COMMAND ----------
+
 # DBTITLE 1,format as DataFrame
 ##LRyValue.write.mode("overwrite").saveAsTable("Diamond_predictions")
 
-col_names = ["Id", "carat", "cut", "color", "clarity", "depth", "table", "price", "x_size", "y_size", "z_size", "LRmodel_Price"]
+col_names = ["Id", "carat", "cut", "color", "clarity", "depth", "table", "price", "x_size", "y_size", "z_size", "LRmodel_Price__decimal"]
 df_allData = pd.DataFrame(allData, columns=col_names)
 print(df_allData)
 
@@ -140,7 +145,7 @@ spark_df.write.mode("overwrite").saveAsTable("Diamonds_allData")
 
 # DBTITLE 1,query with SQL
 # MAGIC %sql
-# MAGIC SELECT *
+# MAGIC SELECT Id, carat, cut, color, clarity, depth, table, x_size, y_size, z_size, price, CAST( LRmodel_Price__decimal as int) as LRmodel_Price
 # MAGIC FROM   Diamonds_allData
 # MAGIC WHERE  Id in (1, 2, 3, 4, 5, 53936, 53937, 53938)
 # MAGIC ORDER  by Id asc
