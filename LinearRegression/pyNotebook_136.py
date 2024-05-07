@@ -5,8 +5,8 @@
 # COMMAND ----------
 
 # MAGIC %matplotlib inline
-# MAGIC %config InlInlineBackend.figure_formats = ['png']
-# MAGIC %config  InlineBackend.rc = {"figure.figsize": (5.0, 3.0)}
+# MAGIC %config InlineBackend.figure_formats = ['png']
+# MAGIC %config InlineBackend.rc = {"figure.figsize": (5.0, 3.0)}
 # MAGIC
 # MAGIC import numpy  as np
 # MAGIC import pandas as pd
