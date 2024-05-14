@@ -54,3 +54,14 @@ print(model.intercept_)
 # DBTITLE 1,model.score
 model.score(X_train, y_train)
 
+
+# COMMAND ----------
+
+# DBTITLE 1,model.predict
+##   1.01|  6.61|  6.53|  3.82| 5538  sampleRow
+
+X_pred = np.array([[1.01], [6.6], [6.54], [3.81]]).reshape(-1, 4)
+#print(X_pred.shape)
+
+model.predict(X_pred)
+## -->  5312 = predicted Result
