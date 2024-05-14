@@ -27,6 +27,22 @@ df_rowsTbl.show()
 
 # COMMAND ----------
 
+xs = df_rowsTbl.select(df_rowsTbl["carat"]).toPandas().values.reshape(-1,)
+ys = df_rowsTbl.select(df_rowsTbl["price"]).toPandas().values.reshape(-1,)
+##print(xs.shape)
+##print(ys.shape)
+
+sns.scatterplot(x = xs, y = ys)
+##----
+x_line = [0.2  ,  3.5]
+y_line = [500  ,17500]
+sns.lineplot(x = x_line, y = y_line, color="red")
+##----
+
+
+# COMMAND ----------
+
+# DBTITLE 1,avg
 df_avgTbl = sqlContext.sql("""
                              SELECT avg(price)  as avg_price
                              FROM   diamonds_alldata 
